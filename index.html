@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Google Map</title>
+        <style>
+            #map{
+                height: 400px;
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1> My Google MAp</h1>
+        <div id="map"></div>
+        <script>
+            function initMap(){
+
+                // Map options
+                var options = {
+                    zoom:10,
+                    center:{lat: 18.5204, lng: 73.8567}
+                }
+
+                // New Map
+
+                var map = new google.maps.Map(document.getElementById('map'), options);
+/*
+                // Add Marker
+                var marker = new google.maps.Marker({
+                    position:{lat:42.4668, lng:-70.9495},
+                    map:map,
+                    //to change Icon of marker
+                    //icon: "Link of the image"
+                });
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content : '<h1>This is Comments</h1>'
+                });
+
+                marker.addListener('click', function(){
+                    infoWindow.open(map, marker);
+                });
+                */
+
+                addMarker({lat:18.5204, lng:73.8567});
+
+                // Add marker function
+                function addMarker(coords){
+                    var marker = new google.maps.Marker({
+                    position:coords,
+                    map:map,
+                    //to change Icon of marker
+                    //icon: "Link of the image"
+                });
+
+                }
+
+
+                const Coordinates = [
+                    { lat: 18.5204, lng: 73.8567 },
+                    { lat: 18.6149, lng: 73.8730 },
+                    { lat: 18.5679, lng: 73.9143 },
+
+                    ];
+                    const Path = new google.maps.Polyline({
+                    path: Coordinates,
+                    geodesic: true,
+                    strokeColor: "#FF0000",
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2,
+                });
+                Path.setMap(map);
+            }
+        </script>
+
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpDyyIHcoO3-iNSRNI3AOBV7A7J_uUCG4&callback=initMap&libraries=&v=weekly">
+        </script>
+
+    </body>
+</html>
+
+
